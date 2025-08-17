@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Integrity Award (HIA)</title>
+    <!-- Favicon section - Updated URL -->
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/1406433454434025576/1406433481021591562/HIA_OFFICIAL_ICON.png?ex=68a272c0&is=68a12140&hm=8fa547ec14a091c33ceeefa4d1597b93c581c65e759f7c7ee6b0d20e04f7bf14" type="image/png">
+
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts - Red Hat Display for Main Titles and Header -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts - Noto Sans for Main Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Material Symbols Outlined for Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=interactive_space,social_leaderboard" />
+
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif; /* Main text font */
+            background-color: #f8fafc; /* Light blue-gray background */
+            color: #334155; /* Darker text for readability */
+        }
+        .section-padding {
+            padding: 4rem 1rem; /* Consistent padding for sections */
+        }
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 6rem 2rem;
+            }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        /* Mobile menu specific styles */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Start off-screen */
+        }
+        .mobile-menu.active {
+            transform: translateX(0); /* Slide in */
+        }
+        .mobile-menu a {
+            padding: 0.75rem 1rem;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        /* Custom font styles */
+        .font-red-hat-display {
+            font-family: 'Red Hat Display', sans-serif;
+        }
+        /* Styles for hover explanations in Funding section */
+        .contribution-item-text {
+            max-height: 0; /* Use max-height for smooth transition */
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, padding-top 0.4s ease-out;
+            box-sizing: border-box; /* Include padding in height calculation */
+            padding-top: 0;
+        }
+        .contribution-item-text.active {
+            max-height: 100px; /* Adjust as needed for content, ensure it's larger than actual content */
+            opacity: 1;
+            padding-top: 0.5rem;
+        }
+        /* Ensure cursor pointer on the clickable donation boxes */
+        .funding-contribution-box {
+            cursor: pointer;
+            position: relative; /* Needed for positioning child elements if any, though not for this specific effect */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container flex justify-between items-center px-4">
+            <div class="flex items-center space-x-3">
+                <!-- New HIA Logo -->
+                <img src="https://cdn.discordapp.com/attachments/1406433454434025576/1406443552367579137/HIA_OFFICIAL_CROPPED.png?ex=68a27c21&is=68a12aa1&hm=74daa986d7c6e0016535d13e45b96356fccecfc2a9bd061f0d936bdae5a69f71" alt="HIA Logo" class="h-12 w-auto rounded-full">
+            </div>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 text-lg font-medium font-red-hat-display">
+                    <li><a href="#about" class="text-gray-600 hover:text-green-700 transition duration-300">About</a></li>
+                    <li><a href="#criteria" class="text-gray-600 hover:text-green-700 transition duration-300">Criteria</a></li>
+                    <li><a href="#awarders" class="text-gray-600 hover:text-green-700 transition duration-300">Judges</a></li>
+                    <li><a href="#tiers" class="text-gray-600 hover:text-green-700 transition duration-300">Tiers</a></li>
+                    <li><a href="#awards" class="text-gray-600 hover:text-green-700 transition duration-300">Awards</a></li>
+                    <li><a href="#ceremony" class="text-gray-600 hover:text-green-700 transition duration-300">Ceremony</a></li>
+                    <li><a href="#funding" class="text-gray-600 hover:text-green-700 transition duration-300">Funding</a></li>
+                </ul>
+            </nav>
+            <!-- Hamburger Icon for Mobile -->
+            <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-green-700 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 md:hidden">
+        <div class="flex justify-end p-4">
+            <button id="close-mobile-menu" class="text-gray-600 hover:text-green-700 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <ul class="flex flex-col items-center space-y-4 text-xl font-medium font-red-hat-display pt-8">
+            <li><a href="#about" class="text-gray-600 hover:text-green-700 transition duration-300" onclick="closeMobileMenu()">About</a></li>
+            <li><a href="#criteria" class="text-gray-600 hover:text-green-700 transition duration-300" onclick="closeMobileMenu()">Criteria</a></li>
+            <li><a href="#awarders" class="text-gray-600 hover:text-green-700 transition duration-300" onclick="closeMobileMenu()">Judges</a></li>
+            <li><a href="#tiers" class="text-gray-600 hover:text-green-700 transition duration-300" onclick="closeMobileMenu()">Tiers</a></li>
+            <li><a href="#awards" class="text-gray-600 hover:text-green-700 transition duration-300" onclick="closeMobileMenu()">Awards</a></li>
+            <li><a href="#ceremony" class="text-gray-600 hover:text-green-700 transition duration-300" onclick="closeMobileMenu()">Ceremony</a></li>
+            <li><a href="#funding" class="text-gray-600 hover:text-green-700 transition duration-300" onclick="closeMobileMenu()">Funding</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section / About -->
+    <section id="about" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white section-padding rounded-b-lg shadow-lg">
+        <div class="container text-center">
+            <h2 class="text-5xl font-extrabold mb-6 drop-shadow-md font-red-hat-display">The Health Integrity Award (HIA)</h2>
+            <p class="text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+                Recognizing and celebrating young leaders who champion healthy lifestyles and positively influence their communities.
+                The Health Integrity Award aims to inspire a generation committed to well-being and integrity.
+            </p>
+            <div class="flex flex-col items-center justify-center space-y-4">
+                <a href="#criteria" class="w-64 bg-white text-green-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">Learn More</a>
+                <a href="#awarders" class="w-64 border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-green-700 transition duration-300 transform hover:scale-105">Become a Judge</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria/Rubric Section -->
+    <section id="criteria" class="section-padding bg-white">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-800 font-red-hat-display">Award Criteria & Rubric</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto text-center leading-relaxed">
+                The Health Integrity Award recognizes students based on a comprehensive rubric designed to identify genuine commitment to a healthy lifestyle, positive community influence, strong leadership, and tangible achievements. Each criterion plays a vital role in determining our awardees.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Criterion 1 -->
+                <div class="bg-emerald-50 p-8 rounded-xl shadow-md border-t-4 border-green-600 hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-700">Commitment to a Healthy Lifestyle <span class="text-lg text-gray-500">(8 Points)</span></h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Demonstrated personal dedication to a healthy lifestyle through a comprehensive portfolio. This may include essays, video interviews, personal health logs, fitness data (with consent), or statements from coaches/mentors.
+                    </p>
+                </div>
+                <!-- Criterion 2 -->
+                <div class="bg-emerald-50 p-8 rounded-xl shadow-md border-t-4 border-green-600 hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-700">Community Influence <span class="text-lg text-gray-500">(8 Points)</span></h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Tangible examples of how the student has inspired and encouraged healthy habits among peers and the wider community. Examples include organizing health events, volunteering at health fairs, or leading wellness initiatives.
+                    </p>
+                </div>
+                <!-- Criterion 3 -->
+                <div class="bg-emerald-50 p-8 rounded-xl shadow-md border-t-4 border-green-600 hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-700">Leadership & Character <span class="text-lg text-gray-500">(8 Points)</span></h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Evidence of strong leadership qualities and impeccable character. This includes in-depth references from teachers, principals, or coaches, and a personal statement reflecting a commitment to ethical conduct and positive influence.
+                    </p>
+                </div>
+                <!-- Criterion 4 -->
+                <div class="bg-emerald-50 p-8 rounded-xl shadow-md border-t-4 border-green-600 hover:shadow-lg transition duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-700">Milestones & Achievements <span class="text-lg text-gray-500">(6 Points)</span></h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Documented progress and notable accomplishments in their personal health journey. This could include athletic achievements, improvements in fitness metrics, or successful guidance of others in their health goals.
+                    </p>
+                </div>
+            </div>
+            <p class="text-center text-xl mt-12 text-gray-700 font-medium">Total possible points: <span class="text-green-700 font-bold">30 points</span></p>
+        </div>
+    </section>
+
+    <!-- Awarder/Judge Section -->
+    <section id="awarders" class="section-padding bg-gray-50">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-800 font-red-hat-display">Become an HIA Judge</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto text-center leading-relaxed">
+                Our judges are at the heart of the Health Integrity Award, ensuring a fair and thorough evaluation process. Learn about the application process to become a part of this vital team, dedicated to recognizing and empowering young health leaders.
+            </p>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-md border-b-4 border-red-500">
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    Passionate about health and empowering young leaders? Join our panel of esteemed HIA Judges! Your honest judgment helps us identify the most deserving students.
+                </p>
+                <h3 class="text-2xl font-semibold mb-4 text-red-600">Application Process:</h3>
+                <ol class="list-decimal list-inside text-gray-700 space-y-3 mb-6">
+                    <li>Submit your application online, providing your full name, school affiliation (if any), graduation year, and a brief description of your fitness/activism background.</li>
+                    <li>Participate in an online meeting with an HIA administrator to discuss the judging process and formally pledge your honest judgment.</li>
+                    <li>Successful applicants will be declared as HIA Judges at the end of an award session. Please apply at least 15 days prior to the end of a 6-month award session to be considered for the current cycle.</li>
+                    <li>For schools with multiple applicants, all qualified individuals are considered, with the highest-scoring applicant chosen if submissions occur within the same session.</li>
+                </ol>
+                <button class="w-full bg-red-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-red-600 transition duration-300 transform hover:scale-105">
+                    Apply to Be a Judge
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tiers of Recognition Section -->
+    <section id="tiers" class="section-padding bg-green-700 text-white">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center mb-12 drop-shadow-md font-red-hat-display">Tiers of Recognition</h2>
+            <p class="text-xl text-center mb-12 max-w-3xl mx-auto leading-relaxed">
+                To ensure fairness and maintain the prestige of the award as we grow, the Health Integrity Award features a multi-tiered recognition system, celebrating excellence at local and broader levels. Higher tiers involve more advanced rubrics and larger judging panels.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tier 1 -->
+                <div class="bg-emerald-600 p-8 rounded-xl shadow-md border-b-4 border-white transform hover:scale-105 transition duration-300">
+                    <h3 class="text-3xl font-bold mb-4 flex items-center">
+                        <svg class="w-8 h-8 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
+                        School-Level Winner
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg">
+                        <li>Automatic entry into County-Level competition.</li>
+                        <li>Receives a prestigious award (certificate, plaque, or medal).</li>
+                    </ul>
+                </div>
+                <!-- Tier 2 -->
+                <div class="bg-emerald-600 p-8 rounded-xl shadow-md border-b-4 border-white transform hover:scale-105 transition duration-300">
+                    <h3 class="text-3xl font-bold mb-4 flex items-center">
+                        <svg class="w-8 h-8 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h2a2 2 0 002-2V7.5a2.5 2.5 0 00-2.5-2.5h-5.918a2 2 0 00-1.581.814L9.2 10.5 7.293 12.407a1 1 0 01-.707.293H3a2 2 0 00-2 2v2a2 2 0 002 2h2"></path></svg>
+                        County-Level Winner
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg">
+                        <li>Automatic entry into State-Level competition.</li>
+                        <li>Receives an enhanced award and a cool prize.</li>
+                        <li>Featured with a picture on the HIA website.</li>
+                    </ul>
+                </div>
+                <!-- Tier 3 -->
+                <div class="bg-emerald-600 p-8 rounded-xl shadow-md border-b-4 border-white transform hover:scale-105 transition duration-300">
+                    <h3 class="text-3xl font-bold mb-4 flex items-center">
+                        <svg class="w-8 h-8 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.001 12.001 0 002.944 12c.045 4.095 2.476 7.665 5.257 9.479M12 21h8a2 2 0 002-2v-4a2 2 0 00-2-2h-4a2 2 0 00-2 2v4a2 2 0 002 2z"></path></svg>
+                        State-Level Winner
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg">
+                        <li>Receives the BEST award.</li>
+                        <li>Designated as an Honorary Judge for their school.</li>
+                        <li>Achieves spotlight feature on the HIA website.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bonus: Founders Award -->
+            <div class="mt-16 text-center bg-emerald-800 p-8 rounded-xl shadow-md border-b-4 border-red-400 max-w-2xl mx-auto">
+                <h3 class="text-3xl font-bold mb-4 text-red-300">Bonus: Founders' Award</h3>
+                <p class="text-xl leading-relaxed">
+                    A special recognition for 1-2 individuals who uniquely stand out, chosen by the HIA admin panel. This award celebrates exceptional merit, even if the student did not win in their county.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Award Section & Authenticity Check -->
+    <section id="awards" class="section-padding bg-white">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-800 font-red-hat-display">The HIA Award & Authenticity Check</h2>
+            <p class="text-lg text-gray-700 mb-8 max-w-3xl mx-auto text-center leading-relaxed">
+                Discover the tangible symbols of achievement for HIA winners and learn how we ensure the integrity of every award. This section outlines the types of awards given and provides a crucial tool for verifying award authenticity.
+            </p>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Award Description -->
+                <div>
+                    <h3 class="text-3xl font-semibold mb-6 text-green-700">What do Winners Receive?</h3>
+                    <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                        HIA winners receive a tangible symbol of their achievement, which varies by tier and is determined by our available funding. Awards include:
+                    </p>
+                    <ul class="list-disc list-inside text-lg text-gray-700 space-y-2 mb-6">
+                        <li>A prestigious <strong>Paper Certificate</strong></li>
+                        <li>An elegant <strong>Medal</strong></li>
+                        <li>A commemorative <strong>Plaque</strong></li>
+                    </ul>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Every official HIA award features a unique, custom ID. This system ensures the authenticity of each award, preventing fraudulent reproductions and upholding the integrity of the recognition.
+                    </p>
+                </div>
+                <!-- Authenticity Check -->
+                <div class="bg-red-50 p-8 rounded-xl shadow-md border-t-4 border-red-500">
+                    <h3 class="text-3xl font-semibold mb-6 text-red-600 text-center">Verify Your Award</h3>
+                    <p class="text-lg text-gray-700 mb-6 text-center">
+                        Enter your unique HIA Award ID below to verify its authenticity.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="text" id="awardIdInput" placeholder="Enter Award ID" class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 transition duration-200">
+                        <button onclick="verifyAward()" class="bg-red-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-red-600 transition duration-300">
+                            Verify
+                        </button>
+                    </div>
+                    <div id="verificationResult" class="mt-6 text-center text-lg font-medium">
+                        <!-- Verification result will be displayed here -->
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4 text-center">
+                        For official verification by institutions, please contact HIA directly via email or phone call.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Award Banquet/Ceremony Section -->
+    <section id="ceremony" class="section-padding bg-gray-50">
+        <div class="container">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-800 font-red-hat-display">Award Banquets & Ceremonies</h2>
+            <p class="text-lg text-gray-700 mb-6 leading-relaxed text-center">
+                The Health Integrity Award culminates in a celebratory banquet or ceremony, a moment to honor our outstanding winners and inspire future leaders. The format and grandeur of these events are carefully scaled to align with their level of recognition.
+            </p>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-md border-b-4 border-green-600">
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-green-700 flex items-center">
+                            <span class="material-symbols-outlined w-6 h-6 mr-2 text-green-600">interactive_space</span>
+                            Virtual Celebrations
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Virtual banquets offer a dynamic and inclusive platform for recognition, allowing winners and their families to connect, share their stories, and be publicly recognized from anywhere.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-3 text-green-700 flex items-center">
+                            <span class="material-symbols-outlined w-6 h-6 mr-2 text-green-600">social_leaderboard</span>
+                            In-Person Galas
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Larger, in-person galas provide a grand setting at suitable venues, complete with professional staging, microphones, and catering. These events offer a truly memorable experience for winners and guests.
+                        </p>
+                    </div>
+                </div>
+                <p class="text-center text-xl text-gray-700 font-medium mt-8">
+                    Banquets are primarily hosted for <strong>County-Level</strong> and <strong>State-Level</strong> winners, creating an exclusive and impactful recognition experience.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funding Section -->
+    <section id="funding" class="section-padding bg-green-500 text-white">
+        <div class="container text-center">
+            <h2 class="text-4xl font-bold mb-12 drop-shadow-md font-red-hat-display">Support the HIA: Funding Our Mission</h2>
+            <p class="text-xl leading-relaxed max-w-3xl mx-auto mb-8">
+                The Health Integrity Award is made possible by the generous support of individuals and organizations committed to fostering health and leadership in youth. Your contributions directly enable us to sustain and grow our program.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-green-600 p-6 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-3">The Awards Themselves</h3>
+                    <p class="text-lg">Funding ensures we can provide high-quality certificates, medals, and plaques that truly reflect the prestige of the award.</p>
+                </div>
+                <div class="bg-green-600 p-6 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-3">Award Ceremonies</h3>
+                    <p class="text-lg">Support covers venue costs, catering, event logistics, and speaker fees for our virtual and in-person banquets.</p>
+                </div>
+                <div class="bg-green-600 p-6 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-semibold mb-3">Online Infrastructure</h3>
+                    <p class="text-lg">Contributions maintain our website hosting, security, and the digital tools necessary to manage applications and judging efficiently.</p>
+                </div>
+            </div>
+            <h3 class="text-3xl font-bold mb-6 text-red-200">Ways You Can Contribute:</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Corporate Sponsorships with hover explanation -->
+                <div class="funding-contribution-box bg-red-500 p-5 rounded-lg shadow-md hover:bg-red-600 transition duration-300" onmouseover="showExplanation(this, 'Support from businesses to align with HIA\'s mission and gain visibility.')" onmouseout="hideExplanation(this)">
+                    <p class="text-xl font-semibold">Corporate Sponsorships</p>
+                    <p class="contribution-item-text text-white text-sm"></p>
+                </div>
+                <!-- School Partnerships with hover explanation -->
+                <div class="funding-contribution-box bg-red-500 p-5 rounded-lg shadow-md hover:bg-red-600 transition duration-300" onmouseover="showExplanation(this, 'Collaborations with educational institutions for mutual benefit.')" onmouseout="hideExplanation(this)">
+                    <p class="text-xl font-semibold">School Partnerships</p>
+                    <p class="contribution-item-text text-white text-sm"></p>
+                </div>
+                <!-- Individual Donations with hover explanation -->
+                <div class="funding-contribution-box bg-red-500 p-5 rounded-lg shadow-md hover:bg-red-600 transition duration-300" onmouseover="showExplanation(this, 'Financial contributions from individuals passionate about our cause.')" onmouseout="hideExplanation(this)">
+                    <p class="text-xl font-semibold">Individual Donations</p>
+                    <p class="contribution-item-text text-white text-sm"></p>
+                </div>
+                <!-- In-Kind Donations with hover explanation -->
+                <div class="funding-contribution-box bg-red-500 p-5 rounded-lg shadow-md hover:bg-red-600 transition duration-300" onmouseover="showExplanation(this, 'Contributions of goods, services, or expertise (e.g., donated venue, design).')" onmouseout="hideExplanation(this)">
+                    <p class="text-xl font-semibold">In-Kind Donations</p>
+                    <p class="contribution-item-text text-white text-sm"></p>
+                </div>
+            </div>
+            <button class="mt-12 bg-white text-green-700 font-bold py-4 px-10 rounded-full shadow-xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                Donate Now & Make an Impact!
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-green-800 text-white py-8">
+        <div class="container text-center text-gray-400">
+            <p>&copy; 2025 Health Integrity Award (HIA). All rights reserved.</p>
+            <p class="mt-2">Promoting Healthy Lifestyles, Recognizing Integrity.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition duration-300">Terms of Service</a>
+                <a href="#" class="hover:text-white transition duration-300">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function verifyAward() {
+            const awardIdInput = document.getElementById('awardIdInput');
+            const verificationResult = document.getElementById('verificationResult');
+            const enteredId = awardIdInput.value.trim();
+
+            // Simple client-side mock verification for demonstration purposes
+            // In a real application, this would involve a server-side lookup
+            const validAwards = {
+                "HIA-2025-001": "Verified: John Doe - School Level Winner (Spring 2025)",
+                "HIA-2025-002": "Verified: Jane Smith - County Level Winner (Spring 2025)",
+                "HIA-2025-003": "Verified: Alex Johnson - State Level Winner (Spring 2025)",
+                "HIA-2024-010": "Verified: Emily White - School Level Winner (Fall 2024)",
+                "HIA-2024-011": "Verified: David Green - County Level Winner (Fall 2024)"
+            };
+
+            if (enteredId === "") {
+                verificationResult.innerHTML = '<p class="text-red-600">Please enter an Award ID.</p>';
+            } else if (validAwards[enteredId]) {
+                verificationResult.innerHTML = `<p class="text-green-600">${validAwards[enteredId]}</p>`;
+            } else {
+                verificationResult.innerHTML = '<p class="text-red-600">Award ID not found or invalid.</p>';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        function openMobileMenu() {
+            mobileMenuOverlay.classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.remove('active');
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu when clicking outside of it (optional, but good UX)
+        mobileMenuOverlay.addEventListener('click', function(event) {
+            if (event.target === mobileMenuOverlay) {
+                closeMobileMenu();
+            }
+        });
+
+        // JavaScript for managing funding explanations on hover
+        let activeExplanationElement = null; // To keep track of the currently active explanation
+
+        function showExplanation(element, text) {
+            // Hide any currently active explanation
+            if (activeExplanationElement && activeExplanationElement !== element.querySelector('.contribution-item-text')) {
+                activeExplanationElement.classList.remove('active');
+                activeExplanationElement.innerHTML = ''; // Clear text immediately to prevent flickering
+            }
+
+            const explanationElement = element.querySelector('.contribution-item-text');
+            explanationElement.innerHTML = text; // Set the text content
+            explanationElement.classList.add('active'); // Add active class to show it smoothly
+            activeExplanationElement = explanationElement;
+        }
+
+        function hideExplanation(element) {
+            const explanationElement = element.querySelector('.contribution-item-text');
+            // Only hide if it's the currently active one (prevents flickering if quickly moving between boxes)
+            if (explanationElement === activeExplanationElement) {
+                explanationElement.classList.remove('active'); // Remove active class to hide it smoothly
+                // Clear text after transition for cleaner behavior if content is dynamically loaded/removed
+                explanationElement.addEventListener('transitionend', function handler() {
+                    if (!explanationElement.classList.contains('active')) { // Ensure it's truly hidden
+                        explanationElement.innerHTML = '';
+                    }
+                    explanationElement.removeEventListener('transitionend', handler);
+                });
+                activeExplanationElement = null;
+            }
+        }
+    </script>
+
+</body>
+</html>
