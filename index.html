@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Integrity Award (HIA)</title>
-    <!-- Favicon section - Updated URL -->
+    <!-- Favicon section -->
     <link rel="icon" href="https://cdn.discordapp.com/attachments/1406433454434025576/1406433481021591562/HIA_OFFICIAL_ICON.png?ex=68a272c0&is=68a12140&hm=8fa547ec14a091c33ceeefa4d1597b93c581c65e759f7c7ee6b0d20e04f7bf14" type="image/png">
 
     <!-- Tailwind CSS CDN for modern styling -->
@@ -15,17 +15,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts - Noto Sans for Main Text -->
+    <!-- Google Fonts - Nata Sans for Main Text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- Material Symbols Outlined for Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=interactive_space,social_leaderboard" />
 
     <style>
         body {
-            font-family: 'Noto Sans', sans-serif; /* Main text font */
+            font-family: 'Nata Sans', sans-serif; /* Main text font corrected to Nata Sans */
             background-color: #f8fafc; /* Light blue-gray background */
             color: #334155; /* Darker text for readability */
         }
@@ -96,7 +96,7 @@
                     <li><a href="#criteria" class="text-gray-600 hover:text-green-700 transition duration-300">Criteria</a></li>
                     <li><a href="#awarders" class="text-gray-600 hover:text-green-700 transition duration-300">Judges</a></li>
                     <li><a href="#tiers" class="text-gray-600 hover:text-green-700 transition duration-300">Tiers</a></li>
-                    <li><a href="#awards" class="text-gray-600 hover:text-green-700 transition duration-300">Awards</a></li>
+                    <li><a href="#awards" class="text-gray-600 hover:text-green-700 transition duration-300">Verify Awards</a></li>
                     <li><a href="#ceremony" class="text-gray-600 hover:text-green-700 transition duration-300">Ceremony</a></li>
                     <li><a href="#funding" class="text-gray-600 hover:text-green-700 transition duration-300">Funding</a></li>
                 </ul>
@@ -135,8 +135,8 @@
                 The Health Integrity Award aims to inspire a generation committed to well-being and integrity.
             </p>
             <div class="flex flex-col items-center justify-center space-y-4">
-                <a href="#criteria" class="w-64 bg-white text-green-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">Learn More</a>
-                <a href="#awarders" class="w-64 border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-green-700 transition duration-300 transform hover:scale-105">Become a Judge</a>
+                <a href="#criteria" class="internal-scroll-link w-64 bg-white text-green-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">Learn More</a>
+                <a href="#awarders" class="internal-scroll-link w-64 border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-green-700 transition duration-300 transform hover:scale-105">Become a Judge</a>
             </div>
         </div>
     </section>
@@ -414,11 +414,11 @@
             // Simple client-side mock verification for demonstration purposes
             // In a real application, this would involve a server-side lookup
             const validAwards = {
-                "HIA-2025-001": "Verified: John Doe - School Level Winner (Spring 2025)",
-                "HIA-2025-002": "Verified: Jane Smith - County Level Winner (Spring 2025)",
-                "HIA-2025-003": "Verified: Alex Johnson - State Level Winner (Spring 2025)",
-                "HIA-2024-010": "Verified: Emily White - School Level Winner (Fall 2024)",
-                "HIA-2024-011": "Verified: David Green - County Level Winner (Fall 2024)"
+                "SL9092VV1": "Verified: Nikita Suzuki - School Level Winner (Spring 2025)",
+                "CL103VV13": "Verified: Noah Markiewicz - County Level Winner (Spring 2025)",
+                "STL982VV1": "Verified: ✡ Ryan Markiewicz - State Level Winner (Spring 2025)",
+                "SL3910VV3": "Verified: Jose Maldonado - School Level Winner (Fall 2024)",
+                "CL1309VV4": "Verified: Aveek Gupta - County Level Winner (Fall 2024)"
             };
 
             if (enteredId === "") {
@@ -430,10 +430,15 @@
             }
         }
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Universal smooth scrolling for all internal anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                // Close mobile menu if it's open
+                const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+                if (mobileMenuOverlay.classList.contains('active')) {
+                    mobileMenuOverlay.classList.remove('active');
+                }
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
@@ -468,15 +473,16 @@
 
         function showExplanation(element, text) {
             // Hide any currently active explanation
-            if (activeExplanationElement && activeExplanationElement !== element.querySelector('.contribution-item-text')) {
+            if (activeExplanationElement) {
                 activeExplanationElement.classList.remove('active');
                 activeExplanationElement.innerHTML = ''; // Clear text immediately to prevent flickering
+                activeExplanationElement = null; // Reset the active element
             }
 
             const explanationElement = element.querySelector('.contribution-item-text');
             explanationElement.innerHTML = text; // Set the text content
             explanationElement.classList.add('active'); // Add active class to show it smoothly
-            activeExplanationElement = explanationElement;
+            activeExplanationElement = explanationElement; // Set the new active element
         }
 
         function hideExplanation(element) {
@@ -491,7 +497,7 @@
                     }
                     explanationElement.removeEventListener('transitionend', handler);
                 });
-                activeExplanationElement = null;
+                activeExplanationElement = null; // Reset the active element when it's fully hidden
             }
         }
     </script>
